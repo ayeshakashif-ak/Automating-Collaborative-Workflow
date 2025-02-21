@@ -1,50 +1,53 @@
-# **Automating Collaborative Development Workflow Using Bash Scripting**  
+# ⚡ Automating Collaborative Development Workflow with Bash 🚀  
+**Development Operations - Assignment 01**  
+📌 *By: 2022132 - Ayesha Kashif & 2022485 - Noor ul Ain*  
 
-## **Overview**  
-This Bash script automates the process of monitoring a file or directory for changes, committing and pushing updates to a Git repository, and notifying collaborators via email using the **SendGrid API**. It ensures a seamless workflow in collaborative development environments by reducing manual intervention.  
-
----
-
-## **Features**  
-✅ **Automatic Change Detection** – Uses SHA-256 checksums to track file modifications.  
-✅ **Git Automation** – Automatically stages, commits, and pushes changes to the remote repository.  
-✅ **Email Notifications** – Sends real-time updates to collaborators via SendGrid.  
-✅ **Configurable Settings** – Uses a `config.cfg` file for easy customization.  
-✅ **Error Handling** – Manages Git failures, API issues, and monitoring errors.  
+<div align="center">
+  <img src="https://media.giphy.com/media/26tn33aiTi1jkl6H6/giphy.gif" width="200"/>
+</div>  
 
 ---
 
-## **Prerequisites**  
-Ensure you have the following installed before running the script:  
+## 🛠️ **Project Overview**  
+Welcome to our *fully automated* development workflow! This Bash script is designed to streamline **collaborative coding** by:  
+✅ Monitoring file changes 🔍  
+✅ Automating Git commits & pushes 🔄  
+✅ Sending real-time email notifications 📩  
 
-### **For Linux/macOS (WSL for Windows Users):**  
-- **Git** ([Download & Install](https://git-scm.com/downloads))  
-- **jq** (For JSON parsing: `sudo apt install jq` or `brew install jq`)  
-- **inotify-tools** (For file monitoring: `sudo apt install inotify-tools` or `brew install fswatch`)  
-- **SendGrid API Key** ([Get API Key](https://sendgrid.com))  
-
-### **For Windows (Git Bash Users):**  
-- **Git** ([Download](https://git-scm.com/downloads))  
-- **jq** (Install via [Chocolatey](https://chocolatey.org/): `choco install jq`)  
-- **SendGrid API Key** ([Get API Key](https://sendgrid.com))  
-- **File Monitoring Alternative:** Use **PowerShell scripts** instead of `inotify-tools`.  
+*Because let’s be honest, who wants to manually commit and push code every 10 minutes?* 😅  
 
 ---
 
-## **Installation & Setup**  
+## 🌟 **Features**  
+🎯 **Smart Change Detection** – Uses SHA-256 checksums to track changes.  
+🎯 **Git Automation** – Auto-stages, commits, and pushes to your repo.  
+🎯 **Instant Notifications** – Sends alerts to collaborators via SendGrid API.  
+🎯 **Easy Customization** – Configurable `config.cfg` file for project settings.  
+🎯 **Built-in Error Handling** – Manages Git failures, API issues & monitoring errors.  
 
-### **1. Clone the Repository**  
+---
+
+## 📂 **Project Structure**  
 ```sh
-git clone <your-repository-url>
-cd <your-repository-folder>
+📂 /automation_script   # Contains the Bash script
+📂 /config              # Configuration settings (config.cfg)
+📂 /docs                # Documentation and README
 ```
 
-### **2. Configure the Script**  
-Edit the `config.cfg` file to specify project settings:  
+---
 
+## 🏗️ **Setup & Installation**  
+### 🔹 **1. Clone the Repository**  
+```sh
+git clone https://github.com/ayeshakashif-ak/auto-devops.git
+cd auto-devops
+```
+
+### 🔹 **2. Configure Your Settings**  
+Edit the `config.cfg` file to match your repo settings:  
 ```sh
 # Path to the local Git repository
-REPO_PATH="/absolute/path/to/repository"
+REPO_PATH="/absolute/path/to/repo"
 
 # File or directory to monitor
 MONITOR_PATH="/absolute/path/to/monitor"
@@ -53,17 +56,16 @@ MONITOR_PATH="/absolute/path/to/monitor"
 GIT_REMOTE="origin"
 BRANCH="main"
 
-# SendGrid Email API settings
-SENDGRID_API_KEY="your_sendgrid_api_key"
-SENDER_EMAIL="your_email@example.com"
+# SendGrid API settings
+SENDGRID_API_KEY="your_api_key_here"
+SENDER_EMAIL="you@example.com"
 
-# Collaborators to notify (comma-separated emails)
-COLLABORATORS="collaborator1@example.com,collaborator2@example.com"
+# Collaborators' email addresses
+COLLABORATORS="collab1@example.com, collab2@example.com"
 ```
 
-### **3. Run the Script**  
-Make the script executable and start monitoring changes:  
-
+### 🔹 **3. Run the Script**  
+Make it executable & start monitoring:  
 ```sh
 chmod +x monitor_and_push.sh
 ./monitor_and_push.sh
@@ -71,44 +73,31 @@ chmod +x monitor_and_push.sh
 
 ---
 
-## **How It Works**  
-
-1️⃣ **Monitors** the specified file/directory for changes.  
-2️⃣ **Calculates a checksum** (SHA-256) to detect modifications.  
-3️⃣ **Commits and pushes changes** automatically to the GitHub repository.  
-4️⃣ **Sends email notifications** to collaborators about updates.  
-
----
-
-## **Error Handling**  
-The script includes error handling for:  
-🚨 **Git Push Failures** – Detects and retries failed pushes.  
-🚨 **SendGrid API Errors** – Logs failed email notifications.  
-🚨 **File Monitoring Issues** – Alerts if the specified directory is inaccessible.  
+## 🎯 **How It Works**  
+1️⃣ Watches the specified file/directory for changes.  
+2️⃣ Generates an SHA-256 checksum to detect modifications.  
+3️⃣ Stages, commits, and pushes updates to GitHub.  
+4️⃣ Sends an email notification to all team members.  
+5️⃣ Runs forever… until you decide it’s time to stop! 😆  
 
 ---
 
-## **Testing & Logs**  
-To verify functionality, you can check:  
-
-- **Git Log:**  
-  ```sh
-  git log --oneline -n 5
-  ```
-- **Script Logs:**  
-  Check `monitor.log` (if implemented) for monitoring and error messages.  
+## 🛑 **Error Handling**  
+✅ **Git Push Failures?** The script retries! 🔄  
+✅ **SendGrid API Issues?** Logs errors & alerts user! 🚨  
+✅ **File Monitoring Problems?** Warns if the directory is inaccessible! ⚠️  
 
 ---
 
-## **Contributing**  
-Feel free to submit **pull requests** or **issues** to improve the script! 🚀  
+## 👥 **Meet the Team**  
+🎓 **Ayesha Kashif** - Automation Enthusiast 🤖  
+🎓 **Noor ul Ain** - Git & CI/CD Ninja 🏆  
 
 ---
 
-## **License**  
-This project is open-source under the **MIT License**.  
+## 📜 **License**  
+This project is built for educational purposes. Feel free to **fork, learn, and modify** – but no commercial use! 🚀  
 
 ---
 
-### **Need Help?**  
-📧 Contact: your_email@example.com  
+💡 *Collaboration just got easier! Let's code, commit, and conquer!* 🎯  
